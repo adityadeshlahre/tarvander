@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useNotification } from "../hooks/useNotification";
+import { useNavigate } from "../hooks/useNavigate";
 
 interface PaymentDetails {
   tripPricePerPerson: number;
@@ -28,6 +29,7 @@ export default function Payment({
   totalDiscount = 0,
   paymentOptions = defaultPaymentOptions,
 }: PaymentDetails) {
+  const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const totalPrice = totalPersons * tripPricePerPerson;
   const grandTotal = totalPrice - totalDiscount;
@@ -39,6 +41,11 @@ export default function Payment({
 
   const handleSelectOption = (option: string) => {
     setSelectedOption(option);
+  };
+
+  const handlePayment = () => {
+    showNotification();
+    navigate("/success");
   };
 
   return (
@@ -89,7 +96,7 @@ export default function Payment({
         </div>
 
         <button
-          onClick={showNotification}
+          onClick={handlePayment}
           className="w-full bg-cyan-600 text-white py-2 rounded-full mt-6"
         >
           Book Now

@@ -63,7 +63,7 @@ export default function CardH({
         onClick={() => {
           like();
         }}
-        className="absolute top-2 right-40 bg-white p-2 rounded-full shadow-md"
+        className="absolute top-4 right-48 bg-white p-2 rounded-full shadow-md"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

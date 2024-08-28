@@ -54,7 +54,8 @@ export default function Card({
           </div>
         </div>
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             like();
           }}
           className="absolute top-44 right-2 bg-white p-2 rounded-full shadow-md"
