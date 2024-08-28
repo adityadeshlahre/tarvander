@@ -35,7 +35,7 @@ export default function Card({
         </div>
         <div className="mt-4 flex justify-between items-center">
           <div className="text-gray-700 text-sm">{timeLine}</div>
-          <div className="text-black text-lg font-semibold">{price}</div>
+          <div className="text-black text-lg font-semibold">$ {price}</div>
         </div>
       </div>
       <button className="absolute top-44 right-2 bg-white p-2 rounded-full shadow-md">
