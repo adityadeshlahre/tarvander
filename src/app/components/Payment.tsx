@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useNotification } from "../hooks/useNotification";
 
 interface PaymentDetails {
   tripPricePerPerson: number;
@@ -31,9 +32,15 @@ export default function Payment({
   const totalPrice = totalPersons * tripPricePerPerson;
   const grandTotal = totalPrice - totalDiscount;
 
+  const showNotification = useNotification({
+    title: "Payment Successful!",
+    text: `Your total amount ${grandTotal} has been recived!`,
+  });
+
   const handleSelectOption = (option: string) => {
     setSelectedOption(option);
   };
+
   return (
     <>
       <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-6">
@@ -81,7 +88,10 @@ export default function Payment({
           <span>${grandTotal?.toFixed(2)}</span>
         </div>
 
-        <button className="w-full bg-cyan-600 text-white py-2 rounded-full mt-6">
+        <button
+          onClick={showNotification}
+          className="w-full bg-cyan-600 text-white py-2 rounded-full mt-6"
+        >
           Book Now
         </button>
 

@@ -1,3 +1,8 @@
+"use client";
+
+import { useLike } from "../hooks/useLike";
+import { useNavigate } from "../hooks/useNavigate";
+
 interface ImageProp {
   img: string;
   main: string;
@@ -17,8 +22,16 @@ export default function CardH({
   timeLine,
   price,
 }: ImageProp) {
+  const navigate = useNavigate();
+  const like = useLike();
   return (
-    <div className="flex max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden relative p-2 ">
+    <div
+      onClick={() => {
+        navigate("/form");
+      }}
+      role="button"
+      className="cursor-pointer flex max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden relative p-2 "
+    >
       <img
         className="w-80 h-full object-cover rounded-lg"
         src={img}
@@ -46,18 +59,23 @@ export default function CardH({
         </div>
         <p className="text-gray-600 text-lg font-bold text-end">{desc}</p>
       </div>
-      <button className="absolute top-2 right-24 bg-white p-2 rounded-full shadow-md">
+      <button
+        onClick={() => {
+          like();
+        }}
+        className="absolute top-2 right-40 bg-white p-2 rounded-full shadow-md"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="currentColor"
           className="size-6 hover:size-8"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
           />
         </svg>

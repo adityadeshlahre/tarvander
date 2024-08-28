@@ -91,10 +91,10 @@ export default function Selector() {
         <div className="flex flex-col items-center text-slate-800 rounded-lg shadow-lg p-4">
           <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
             <div className="flex flex-col w-full md:w-1/2">
-              <div className="mb-2 font-bold">Start Point:</div>
-              <div className="flex flex-col items-start space-y-2">
+              <div className="flex flex-row items-start space-y-2">
+                <div className="mb-2 font-bold">Start Point:</div>
                 <select
-                  className="border rounded p-2"
+                  className="border rounded p-2 bg-inherit"
                   value={selectedStarting.name}
                   onChange={handleStartingChange}
                 >
@@ -113,10 +113,10 @@ export default function Selector() {
               </div>
             </div>
             <div className="flex flex-col w-full md:w-1/2">
-              <div className="mb-2 font-bold">End Point:</div>
-              <div className="flex flex-col items-start space-y-2">
+              <div className="flex flex-row items-start space-y-2">
+                <div className="mb-2 font-bold">End Point:</div>
                 <select
-                  className="border rounded p-2"
+                  className="border rounded p-2 bg-inherit"
                   value={selectedEnding.name}
                   onChange={handleEndingChange}
                 >

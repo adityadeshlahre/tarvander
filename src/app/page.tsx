@@ -5,8 +5,7 @@ export default function Home() {
   return (
     <>
       <div>
-        <Spinner />
-        <Payment tripPricePerPerson={0} totalPersons={1} totalDiscount={0} />
+        sdf
       </div>
     </>
   );
