@@ -1,14 +1,14 @@
 export default function Footer() {
   return (
     <>
-      <div className="bg-cyan-700">
+      <div className="bg-cyan-700 text-slate-300">
         <div className="flex flex-row">
-          <div className="basis-1/2 text-4xl text-slate-300 m-6 font-serif">
+          <div className="basis-1/2 text-4xl text-1xl m-6 font-serif">
             travander
           </div>
           <div className="flex flex-row basis-1/2 gap-20 space-x-12 p-4">
             <div>
-              <div className="text-2xl text-slate-300">Comapny</div>
+              <div className="text-2xl font-bold text-1xl">Comapny</div>
               <ul>
                 <li>Home</li>
                 <li>Community</li>
@@ -17,7 +17,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <div className="text-2xl text-slate-300">Support</div>
+              <div className="text-2xl font-bold text-1xl">Support</div>
               <ul>
                 <li>FAQ</li>
                 <li>Terms & Conditions</li>
@@ -26,7 +26,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <div className="text-2xl text-slate-300">Contact</div>
+              <div className="text-2xl font-bold text-1xl">Contact</div>
               <ul>
                 <li>+91 9834xxxxxx</li>
                 <li>hellp@travander.com</li>
