@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import Spinner from "../components/Spiner";
 import Swal from "sweetalert2";
+import { useNavigate } from "../hooks/useNavigate";
 
 export default function Success() {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export default function Success() {
       const noOfTraveller = sessionStorage.getItem("noOfTraveller") || "0";
       const selectedStarting = sessionStorage.getItem("selectedStarting");
       const selectedEnding = sessionStorage.getItem("selectedEnding");
-      const selectedOption = sessionStorage.getItem("selectedOption");
+      const selectedOption = sessionStorage.getItem("selectedOption") || "N/A";
       const travelerNames = JSON.parse(
         sessionStorage.getItem("travelerNames") || "[]"
       );
@@ -51,9 +53,7 @@ export default function Success() {
           <strong>Ending Activity:</strong> ${
             selectedEnding ? JSON.parse(selectedEnding).name : "N/A"
           }<br>
-          <strong>Selected Payment Option:</strong> ${
-            selectedOption ? JSON.parse(selectedOption).name : "N/A"
-          }<br>
+          <strong>Selected Payment Option:</strong> ${selectedOption}<br>
           <strong>Number of Travellers:</strong> ${noOfTraveller}<br>
           <strong>Leader Details:</strong><br>
           Name: ${leaderName}<br>
@@ -76,8 +76,13 @@ export default function Success() {
         timer: 4000,
         showConfirmButton: true,
       });
+      const redirectTimeout = setTimeout(() => {
+        navigate("/");
+      }, 10000);
+
+      return () => clearTimeout(redirectTimeout);
     }
-  }, [isLoading]);
+  }, [isLoading, navigate]);
 
   return (
     <>
