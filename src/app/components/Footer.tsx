@@ -1,14 +1,12 @@
 export default function Footer() {
   return (
     <>
-      <div className="bg-cyan-700 text-slate-300">
-        <div className="flex flex-row">
-          <div className="basis-1/2 text-4xl text-1xl m-6 font-serif">
-            travander
-          </div>
-          <div className="flex flex-row basis-1/2 gap-20 space-x-12 p-4">
+      <footer className="bg-cyan-700 text-slate-300">
+        <div className="flex flex-row justify-between p-6">
+          <div className="text-4xl font-serif">travander</div>
+          <div className="flex flex-row gap-20 space-x-12 md:space-x-6 sm:space-x-3">
             <div>
-              <div className="text-2xl font-bold text-1xl">Comapny</div>
+              <div className="text-2xl font-bold ">Comapny</div>
               <ul>
                 <li>Home</li>
                 <li>Community</li>
@@ -17,7 +15,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <div className="text-2xl font-bold text-1xl">Support</div>
+              <div className="text-2xl font-bold ">Support</div>
               <ul>
                 <li>FAQ</li>
                 <li>Terms & Conditions</li>
@@ -26,7 +24,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <div className="text-2xl font-bold text-1xl">Contact</div>
+              <div className="text-2xl font-bold ">Contact</div>
               <ul>
                 <li>+91 9834xxxxxx</li>
                 <li>hellp@travander.com</li>
@@ -138,7 +136,7 @@ export default function Footer() {
         <div className="flex justify-center items-center">
           2021 (c) — Mochilero Travel Ventures Pvt. Ltd. All Rights Reserved
         </div>
-      </div>
+      </footer>
     </>
   );
 }

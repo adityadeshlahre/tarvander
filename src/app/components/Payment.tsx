@@ -1,12 +1,10 @@
-"use client";
-import React, { useState } from "react";
-import { useNotification } from "../hooks/useNotification";
-import { useNavigate } from "../hooks/useNavigate";
-
 interface PaymentDetails {
   tripPricePerPerson: number;
   totalPersons: number;
   totalDiscount: number;
+  selectedOption: string | null;
+  onOptionSelect: (option: string) => void;
+  onPayment: () => void;
   paymentOptions?: { name: string; imgSrc: string }[];
 }
 
@@ -27,26 +25,13 @@ export default function Payment({
   tripPricePerPerson = 0,
   totalPersons = 1,
   totalDiscount = 0,
+  selectedOption,
+  onOptionSelect,
+  onPayment,
   paymentOptions = defaultPaymentOptions,
 }: PaymentDetails) {
-  const navigate = useNavigate();
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const totalPrice = totalPersons * tripPricePerPerson;
   const grandTotal = totalPrice - totalDiscount;
-
-  const showNotification = useNotification({
-    title: "Payment Successful!",
-    text: `Your total amount ${grandTotal} has been recived!`,
-  });
-
-  const handleSelectOption = (option: string) => {
-    setSelectedOption(option);
-  };
-
-  const handlePayment = () => {
-    showNotification();
-    navigate("/success");
-  };
 
   return (
     <>
@@ -82,7 +67,7 @@ export default function Payment({
                   type="checkbox"
                   className="form-checkbox h-5 w-5"
                   checked={selectedOption === option.name}
-                  onChange={() => handleSelectOption(option.name)}
+                  onChange={() => onOptionSelect(option.name)}
                 />
                 <img src={option.imgSrc} alt={option.name} className="h-5" />
               </label>
@@ -96,7 +81,7 @@ export default function Payment({
         </div>
 
         <button
-          onClick={handlePayment}
+          onClick={onPayment}
           className="w-full bg-cyan-600 text-white py-2 rounded-full mt-6"
         >
           Book Now

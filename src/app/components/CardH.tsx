@@ -1,5 +1,3 @@
-"use client";
-
 import { useLike } from "../hooks/useLike";
 import { useNavigate } from "../hooks/useNavigate";
 

@@ -1,10 +1,17 @@
-"use client";
+import { Dispatch, SetStateAction } from "react";
+import NTraveller from "./NTraveller";
+
 interface TravellerProp {
   groupSize: number;
   noOfTraveller: number;
+  setNoOfTraveller: Dispatch<SetStateAction<number>>;
 }
 
-export default function Traveller({ groupSize, noOfTraveller }: TravellerProp) {
+export default function Traveller({
+  groupSize,
+  noOfTraveller,
+  setNoOfTraveller,
+}: TravellerProp) {
   return (
     <>
       <div className="text-slate-900">
@@ -16,7 +23,7 @@ export default function Traveller({ groupSize, noOfTraveller }: TravellerProp) {
           <span>
             <button
               onClick={() => {
-                console.log("plus");
+                setNoOfTraveller((prev) => prev + 1);
               }}
               type="button"
             >
@@ -40,7 +47,7 @@ export default function Traveller({ groupSize, noOfTraveller }: TravellerProp) {
           <span>
             <button
               onClick={() => {
-                console.log("minus");
+                setNoOfTraveller((prev) => Math.max(prev - 1, 1));
               }}
               type="button"
             >
@@ -62,10 +69,7 @@ export default function Traveller({ groupSize, noOfTraveller }: TravellerProp) {
           </span>
         </div>
         <div className="text-sm flex flex-col items-center">
-          <span className="text-2xl">
-            {/* need to render nth(from number of traveller) */}
-            {/* n */} Traveller
-          </span>
+          <span className="text-2xl">Leader Traveller</span>
           <div className="flex space-x-4">
             <div>
               <div>Name</div>
@@ -96,24 +100,8 @@ export default function Traveller({ groupSize, noOfTraveller }: TravellerProp) {
             </div>
           </div>
           <br />
-          <span className="text-2xl">
-            {/* need to render nth(from number of traveller) */}
-            {/* n */} Traveller
-          </span>
-          <div className="flex space-x-4">
-            <div>
-              <div>Name</div>
-              <div>
-                <input className="border rounded p-1"></input>
-              </div>
-            </div>
-            <div>
-              <div>Age</div>
-              <div>
-                <input className="border rounded p-1"></input>
-              </div>
-            </div>
-          </div>
+          <NTraveller travellerCount={noOfTraveller} />
+          <br />
         </div>
       </div>
     </>

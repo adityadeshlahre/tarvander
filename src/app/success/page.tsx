@@ -18,7 +18,7 @@ export default function Success() {
     <>
       {isLoading ? (
         <div className="flex items-center justify-center min-h-screen">
-          <Spinner />
+          <Spinner time={2} />
         </div>
       ) : (
         <div>

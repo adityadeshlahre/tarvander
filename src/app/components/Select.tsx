@@ -1,23 +1,28 @@
-"use client";
-import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useRouter } from "next/navigation";
+
+interface SelectProps {
+  selectedLocation: string;
+  setSelectedLocation: (location: string) => void;
+  selectedName: string;
+  setSelectedName: (name: string) => void;
+  selectedDate: Date | null;
+  setSelectedDate: (date: Date | null) => void;
+  handleNavigate: () => void;
+}
 
 const locations = ["New York", "Los Angeles", "Chicago"];
 const names = ["John Doe", "Jane Smith", "Alice Johnson"];
 
-export default function Select() {
-  const router = useRouter();
-
-  const [selectedLocation, setSelectedLocation] = useState<string>("");
-  const [selectedName, setSelectedName] = useState<string>("");
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-
-  const handleNavigate = () => {
-    router.push("/form");
-  };
-
+export default function Select({
+  selectedLocation,
+  setSelectedLocation,
+  selectedName,
+  setSelectedName,
+  selectedDate,
+  setSelectedDate,
+  handleNavigate,
+}: SelectProps) {
   return (
     <>
       <div className="justify-center items-center">
