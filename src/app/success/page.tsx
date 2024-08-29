@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Spinner from "../components/Spiner";
+import Swal from "sweetalert2";
 
 export default function Success() {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,6 +14,70 @@ export default function Success() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (!isLoading) {
+      const selectedLocation = sessionStorage.getItem("selectedLocation") || "";
+      const selectedName = sessionStorage.getItem("selectedName") || "";
+      const selectedDate = new Date(
+        sessionStorage.getItem("selectedDate") || ""
+      );
+      const grandTotal = sessionStorage.getItem("grandTotal") || "0.00";
+      const leaderName = sessionStorage.getItem("leaderName") || "";
+      const leaderAge = sessionStorage.getItem("leaderAge") || "";
+      const leaderContact = sessionStorage.getItem("leaderContact") || "";
+      const leaderEmail = sessionStorage.getItem("leaderEmail") || "";
+      const noOfTraveller = sessionStorage.getItem("noOfTraveller") || "0";
+      const selectedStarting = sessionStorage.getItem("selectedStarting");
+      const selectedEnding = sessionStorage.getItem("selectedEnding");
+      const selectedOption = sessionStorage.getItem("selectedOption");
+      const travelerNames = JSON.parse(
+        sessionStorage.getItem("travelerNames") || "[]"
+      );
+      const travelerAges = JSON.parse(
+        sessionStorage.getItem("travelerAges") || "[]"
+      );
+
+      Swal.fire({
+        title: "Payment Successful!",
+        // text: `Location: ${selectedLocation}, Name: ${selectedName}, Date: ${selectedDate.toLocaleString()}`,
+        html: `
+          <strong>Location:</strong> ${selectedLocation}<br>
+          <strong>Name:</strong> ${selectedName}<br>
+          <strong>Date:</strong> ${selectedDate.toLocaleString()}<br>
+          <strong>Starting Activity:</strong> ${
+            selectedStarting ? JSON.parse(selectedStarting).name : "N/A"
+          }<br>
+          <strong>Ending Activity:</strong> ${
+            selectedEnding ? JSON.parse(selectedEnding).name : "N/A"
+          }<br>
+          <strong>Selected Payment Option:</strong> ${
+            selectedOption ? JSON.parse(selectedOption).name : "N/A"
+          }<br>
+          <strong>Number of Travellers:</strong> ${noOfTraveller}<br>
+          <strong>Leader Details:</strong><br>
+          Name: ${leaderName}<br>
+          Age: ${leaderAge}<br>
+          Contact: ${leaderContact}<br>
+          Email: ${leaderEmail}<br>
+          <strong>Traveller Details:</strong><br>
+          ${travelerNames
+            .map(
+              (name: string, index: number) =>
+                `<div>Traveller ${index + 1}: Name: ${name}, Age: ${
+                  travelerAges[index] || "N/A"
+                }</div>`
+            )
+            .join("")}
+          <br>
+          <strong>Grand Total:</strong> $${grandTotal}
+        `,
+        icon: "success",
+        timer: 4000,
+        showConfirmButton: true,
+      });
+    }
+  }, [isLoading]);
 
   return (
     <>

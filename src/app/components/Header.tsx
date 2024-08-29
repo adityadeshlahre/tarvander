@@ -1,3 +1,4 @@
+import { useNavigate } from "../hooks/useNavigate";
 import Button from "./Button";
 
 interface ButtonRenderProps {
@@ -11,11 +12,17 @@ export default function Header({
   appName,
   notiTitle,
 }: ButtonRenderProps) {
+  const router = useNavigate();
   return (
     <>
       <div className="text-black">
         <div className="flex tems-center justify-between m-2">
-          <div className="text-4xl font-serif p-1 text-cyan-700 hover:underline">
+          <div
+            onClick={() => {
+              router("/");
+            }}
+            className="cursor-pointer text-4xl font-serif p-1 text-cyan-700 hover:underline"
+          >
             travander
           </div>
           <div className="flex items-center space-x-6">

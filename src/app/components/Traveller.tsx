@@ -1,4 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
+"use client";
+
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import NTraveller from "./NTraveller";
 
 interface TravellerProp {
@@ -12,6 +14,19 @@ export default function Traveller({
   noOfTraveller,
   setNoOfTraveller,
 }: TravellerProp) {
+  const [leaderName, setLeaderName] = useState("");
+  const [leaderAge, setLeaderAge] = useState("");
+  const [leaderContact, setLeaderContact] = useState("");
+  const [leaderEmail, setLeaderEmail] = useState("");
+
+  useEffect(() => {
+    // sessionStorage.setItem("noOfTraveller", noOfTraveller.toString());
+    sessionStorage.setItem("leaderName", leaderName);
+    sessionStorage.setItem("leaderAge", leaderAge);
+    sessionStorage.setItem("leaderContact", leaderContact);
+    sessionStorage.setItem("leaderEmail", leaderEmail);
+  }, [leaderName, leaderAge, leaderContact, leaderEmail]);
+
   return (
     <>
       <div className="text-slate-900">
@@ -74,13 +89,23 @@ export default function Traveller({
             <div>
               <div>Name</div>
               <div>
-                <input className="border rounded p-1"></input>
+                <input
+                  value={leaderName}
+                  onChange={(e) => setLeaderName(e.target.value)}
+                  placeholder="Enter name"
+                  className="border rounded p-1"
+                ></input>
               </div>
             </div>
             <div>
               <div>Age</div>
               <div>
-                <input className="border rounded p-1"></input>
+                <input
+                  value={leaderAge}
+                  onChange={(e) => setLeaderAge(e.target.value)}
+                  placeholder="Enter age"
+                  className="border rounded p-1"
+                ></input>
               </div>
             </div>
           </div>
@@ -89,13 +114,23 @@ export default function Traveller({
             <div>
               <div>Contact</div>
               <div>
-                <input className="border rounded p-1"></input>
+                <input
+                  value={leaderContact}
+                  onChange={(e) => setLeaderContact(e.target.value)}
+                  placeholder="Enter contact"
+                  className="border rounded p-1"
+                ></input>
               </div>
             </div>
             <div>
               <div>Email</div>
               <div>
-                <input className="border rounded p-1"></input>
+                <input
+                  value={leaderEmail}
+                  onChange={(e) => setLeaderEmail(e.target.value)}
+                  placeholder="Enter email"
+                  className="border rounded p-1"
+                ></input>
               </div>
             </div>
           </div>

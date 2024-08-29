@@ -1,8 +1,29 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 interface NTravellerProps {
   travellerCount: number;
 }
 
 export default function NTraveller({ travellerCount }: NTravellerProps) {
+  const [travelerNames, setTravelerNames] = useState<string[]>(
+    Array(travellerCount).fill("")
+  );
+  const [travelerAges, setTravelerAges] = useState<string[]>(
+    Array(travellerCount).fill("")
+  );
+
+  useEffect(() => {
+    setTravelerNames(Array(travellerCount).fill(""));
+    setTravelerAges(Array(travellerCount).fill(""));
+  }, [travellerCount]);
+
+  useEffect(() => {
+    sessionStorage.setItem("travelerNames", JSON.stringify(travelerNames));
+    sessionStorage.setItem("travelerAges", JSON.stringify(travelerAges));
+  }, [travelerNames, travelerAges]);
+
   return (
     <>
       {Array.from({ length: travellerCount }).map((_, index) => (
@@ -13,13 +34,31 @@ export default function NTraveller({ travellerCount }: NTravellerProps) {
               <div>
                 <div>Name</div>
                 <div>
-                  <input className="border rounded p-1"></input>
+                  <input
+                    value={travelerNames[index] || ""}
+                    onChange={(e) => {
+                      const newNames = [...travelerNames];
+                      newNames[index] = e.target.value;
+                      setTravelerNames(newNames);
+                    }}
+                    placeholder="Enter name"
+                    className="border rounded p-1"
+                  ></input>
                 </div>
               </div>
               <div>
                 <div>Age</div>
                 <div>
-                  <input className="border rounded p-1"></input>
+                  <input
+                    value={travelerAges[index] || ""}
+                    onChange={(e) => {
+                      const newAges = [...travelerAges];
+                      newAges[index] = e.target.value;
+                      setTravelerAges(newAges);
+                    }}
+                    placeholder="Enter age"
+                    className="border rounded p-1"
+                  ></input>
                 </div>
               </div>
             </div>

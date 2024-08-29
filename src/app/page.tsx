@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./components/Card";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -30,6 +30,12 @@ export default function Home() {
   const handleNavigate = () => {
     router.push("/form");
   };
+
+  useEffect(() => {
+    sessionStorage.setItem("selectedLocation", selectedLocation);
+    sessionStorage.setItem("selectedName", selectedName);
+    sessionStorage.setItem("selectedDate", selectedDate?.toISOString() || "");
+  }, [selectedDate, selectedLocation, selectedName]);
 
   return (
     <>

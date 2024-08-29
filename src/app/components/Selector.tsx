@@ -1,10 +1,5 @@
 import { ChangeEvent } from "react";
 
-interface SelectorList {
-  starting: { name: string; price: number; dateTime: string }[];
-  ending: { name: string; price: number; dateTime: string }[];
-}
-
 interface SelectorItem {
   name: string;
   price: number;

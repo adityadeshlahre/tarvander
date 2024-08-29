@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import CardH from "../components/CardH";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -8,6 +9,11 @@ import Selector from "../components/Selector";
 import Traveller from "../components/Traveller";
 import { useNavigate } from "../hooks/useNavigate";
 import { useNotification } from "../hooks/useNotification";
+
+interface SelectorList {
+  starting: { name: string; price: number; dateTime: string }[];
+  ending: { name: string; price: number; dateTime: string }[];
+}
 
 const dummyList = {
   starting: [
@@ -91,6 +97,19 @@ export default function Form() {
     showNotification();
     navigate("/success");
   };
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      "selectedStarting",
+      JSON.stringify(selectedStarting)
+    );
+    sessionStorage.setItem("selectedEnding", JSON.stringify(selectedEnding));
+    sessionStorage.setItem("noOfTraveller", noOfTraveller.toString());
+    sessionStorage.setItem(
+      "selectedOption",
+      selectedOption !== null ? selectedOption : "null"
+    );
+  }, [noOfTraveller, selectedEnding, selectedStarting, selectedOption]);
 
   return (
     <>

@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect } from "react";
+
 interface PaymentDetails {
   tripPricePerPerson: number;
   totalPersons: number;
@@ -32,6 +36,10 @@ export default function Payment({
 }: PaymentDetails) {
   const totalPrice = totalPersons * tripPricePerPerson;
   const grandTotal = totalPrice - totalDiscount;
+
+  useEffect(() => {
+    sessionStorage.setItem("grandTotal", grandTotal.toFixed(2));
+  }, [grandTotal]);
 
   return (
     <>
