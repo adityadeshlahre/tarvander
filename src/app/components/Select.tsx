@@ -26,10 +26,10 @@ export default function Select({
   return (
     <>
       <div className="justify-center items-center">
-        <div className="rounded-full shadow-sm shadow-black w-1/2 p-6 mx-auto">
-          <div className="flex flex-row space-x-6 justify-center items-center text-lg">
+        <div className="rounded-lg shadow-sm shadow-black w-full sm:w-3/4 md:w-1/2 p-6 mx-auto md:rounded-full sm:rounded-md">
+          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 justify-center items-center text-base md:text-lg">
             <div className="text-sm">Select Any One</div>
-            <div className="flex items-center space-x-2">
+            <div className="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -60,7 +60,7 @@ export default function Select({
                 </select>
               </span>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -91,7 +91,7 @@ export default function Select({
                 </select>
               </span>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -115,7 +115,7 @@ export default function Select({
                 />
               </span>
             </div>
-            <div className="text-xs">
+            <div className="text-xs mt-4 md:mt-0">
               <button onClick={handleNavigate} type="button">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

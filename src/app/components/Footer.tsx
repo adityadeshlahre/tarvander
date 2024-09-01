@@ -2,34 +2,36 @@ export default function Footer() {
   return (
     <>
       <footer className="bg-cyan-700 text-slate-300">
-        <div className="flex flex-row justify-between p-6">
-          <div className="text-4xl font-serif">travander</div>
-          <div className="flex flex-row gap-20 space-x-12 md:space-x-6 sm:space-x-3">
-            <div>
-              <div className="text-2xl font-bold ">Comapny</div>
-              <ul>
+        <div className="flex flex-col md:flex-row justify-between p-6">
+          <div className="text-4xl font-serif mb-4 md:mb-0 md:text-center sm:text-center">
+            travander
+          </div>
+          <div className="flex flex-col md:flex-row gap-8 md:gap-20">
+            <div className="text-center md:text-left">
+              <div className="text-2xl font-bold">Company</div>
+              <ul className="mt-2 space-y-2">
                 <li>Home</li>
                 <li>Community</li>
                 <li>About Us</li>
                 <li>Login</li>
               </ul>
             </div>
-            <div>
-              <div className="text-2xl font-bold ">Support</div>
-              <ul>
+            <div className="text-center md:text-left">
+              <div className="text-2xl font-bold">Support</div>
+              <ul className="mt-2 space-y-2">
                 <li>FAQ</li>
                 <li>Terms & Conditions</li>
                 <li>Privacy Policy</li>
                 <li>Cancellation Policy</li>
               </ul>
             </div>
-            <div>
-              <div className="text-2xl font-bold ">Contact</div>
-              <ul>
+            <div className="text-center md:text-left">
+              <div className="text-2xl font-bold">Contact</div>
+              <ul className="mt-2 space-y-2">
                 <li>+91 9834xxxxxx</li>
                 <li>hellp@travander.com</li>
                 <li>
-                  <span className="flex items-center space-x-2">
+                  <span className="flex justify-center items-center space-x-2">
                     <svg
                       width="32"
                       height="33"
@@ -133,7 +135,7 @@ export default function Footer() {
           </div>
         </div>
         <hr className="border-white mt-2 mb-2" />
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center text-center p-4">
           2021 (c) — Mochilero Travel Ventures Pvt. Ltd. All Rights Reserved
         </div>
       </footer>
