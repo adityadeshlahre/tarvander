@@ -1,10 +1,11 @@
+"use client";
 export default function Footer() {
   return (
     <>
       <footer className="bg-cyan-700 text-slate-300">
         <div className="flex flex-col md:flex-row justify-between p-6">
           <div className="text-4xl font-serif mb-4 md:mb-0 md:text-center sm:text-center">
-            travander
+            tarvander
           </div>
           <div className="flex flex-col md:flex-row gap-8 md:gap-20">
             <div className="text-center md:text-left">
@@ -29,7 +30,7 @@ export default function Footer() {
               <div className="text-2xl font-bold">Contact</div>
               <ul className="mt-2 space-y-2">
                 <li>+91 9834xxxxxx</li>
-                <li>hellp@travander.com</li>
+                <li>hellp@tarvander.com</li>
                 <li>
                   <span className="flex justify-center items-center space-x-2">
                     <svg

@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Select from "./components/Select";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const limit: number = 8;
 
@@ -21,6 +22,15 @@ const cardData = Array.from({ length: limit }, (_, index) => ({
   price: `${300 + index * 10}`,
 }));
 
+async function getUserDetails() {
+  try {
+    const response = await axios.get("http://localhost:3000/api/user");
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export default function Home() {
   const [selectedLocation, setSelectedLocation] = useState<string>("");
   const [selectedName, setSelectedName] = useState<string>("");
@@ -30,6 +40,9 @@ export default function Home() {
   const handleNavigate = () => {
     router.push("/form");
   };
+
+  const res = getUserDetails();
+  console.log(res);
 
   useEffect(() => {
     sessionStorage.setItem("selectedLocation", selectedLocation);

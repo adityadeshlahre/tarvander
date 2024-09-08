@@ -1,3 +1,4 @@
+"use client";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -25,8 +26,8 @@ export default function Select({
 }: SelectProps) {
   return (
     <>
-      <div className="justify-center items-center">
-        <div className="rounded-lg shadow-sm shadow-black w-full sm:w-3/4 md:w-1/2 p-6 mx-auto md:rounded-full sm:rounded-md">
+      <div className="justify-center items-center m-4">
+        <div className="bg-white rounded-lg shadow-sm shadow-black h-auto p-6 max-w-max mx-auto md:rounded-full sm:rounded-md">
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 justify-center items-center text-base md:text-lg">
             <div className="text-sm">Select Any One</div>
             <div className="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-2">

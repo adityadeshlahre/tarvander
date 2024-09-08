@@ -1,3 +1,5 @@
+"use client";
+
 import { useNavigate } from "../hooks/useNavigate";
 import Button from "./Button";
 
@@ -12,6 +14,10 @@ export default function Header({
   appName,
   notiTitle,
 }: ButtonRenderProps) {
+  const navigate = useNavigate();
+  const onClickFucn = () => {
+    navigate("/signup");
+  };
   const router = useNavigate();
   return (
     <>
@@ -23,7 +29,7 @@ export default function Header({
             }}
             className="cursor-pointer text-3xl sm:text-4xl font-serif p-1 text-cyan-700 hover:underline"
           >
-            travander
+            tarvander
           </div>
           <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
             <div className="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-6 text-lg sm:text-xl">
@@ -31,7 +37,11 @@ export default function Header({
               <div className="text-xl hover:underline">Community</div>
               <div className="text-xl hover:underline">About Us</div>
             </div>
-            <Button appName={appName} notiTitle={notiTitle}>
+            <Button
+              appName={appName}
+              notiTitle={notiTitle}
+              onClickFucn={onClickFucn}
+            >
               {text}
             </Button>
           </div>

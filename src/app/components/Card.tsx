@@ -1,3 +1,4 @@
+"use client";
 interface ImageProp {
   img: string;
   main: string;
