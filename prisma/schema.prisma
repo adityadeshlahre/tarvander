@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
 }
 
 datasource db {
@@ -8,7 +9,53 @@ datasource db {
 }
 
 model User {
+  id        Int        @id @default(autoincrement())
+  password  String
+  name      String
+  age       Int
+  contact   String
+  email     String     @unique
+  role      Role
+  payment   Payment?
+  leader    Leader?    @relation("UserToLeader")
+  travelers Traveler[]
+}
+
+model Leader {
+  id        Int        @id @default(autoincrement())
+  user      User       @relation("UserToLeader", fields: [userId], references: [id])
+  userId    Int        @unique
+  travelers Traveler[]
+  places    Place[]
+}
+
+model Traveler {
   id       Int    @id @default(autoincrement())
-  username String @unique
-  password String
+  name     String
+  age      Int
+  leader   Leader @relation(fields: [leaderId], references: [id])
+  leaderId Int
+  user     User?  @relation(fields: [userId], references: [id])
+  userId   Int?
+}
+
+model Place {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+  start       String
+  end         String
+  price       Int
+  leader      Leader @relation(fields: [leaderId], references: [id])
+  leaderId    Int
+}
+
+enum Role {
+  LEADER
+  PASSENGER
+}
+
+enum Payment {
+  RAZOR_PAY
+  PHONE_PE
 }

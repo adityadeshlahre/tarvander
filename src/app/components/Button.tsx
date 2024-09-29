@@ -7,7 +7,7 @@ interface ButtonProps {
   children: ReactNode;
   appName: string;
   notiTitle: string;
-  onClickFucn?: () => void;
+  onClickFucn?: () => Promise<void>;
 }
 
 export default function Button({
@@ -18,7 +18,7 @@ export default function Button({
 }: ButtonProps) {
   const handleClick = async () => {
     if (onClickFucn) {
-      onClickFucn();
+      await onClickFucn();
       Swal.fire({
         title: notiTitle,
         text: appName,

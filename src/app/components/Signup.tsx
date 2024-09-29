@@ -4,25 +4,29 @@ import axios from "axios";
 import { ChangeEventHandler, useState } from "react";
 import Button from "./Button";
 import { useNavigate } from "../hooks/useNavigate";
+import { signup } from "../actions/user";
+import { UserModel } from "../../../zod-schemas";
+
+UserModel;
 
 export function Signup() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [age, setAge] = useState<number>(0);
+  const [contact, setContact] = useState<string>("");
+  const [role, setRole] = useState<string>("0");
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    async () => {
-      try {
-        await axios.post("http://localhost:3000/api/user", {
-          username,
-          password,
-        });
-        navigate("/");
-      } catch (error) {
-        console.error("Error signing up:", error);
-      }
-    };
+  const handleClick = async () => {
+    try {
+      ("use server");
+      await signup(password, name, age, contact, email, role);
+      navigate("/");
+    } catch (error) {
+      console.error("Error signing up:", error);
+    }
   };
 
   return (
@@ -39,10 +43,10 @@ export function Signup() {
             <div className="pt-2">
               <LabelledInput
                 onChange={(e) => {
-                  setUsername(e.target.value);
+                  setEmail(e.target.value);
                 }}
-                label="Username"
-                placeholder="harkirat@gmail.com"
+                label="Email"
+                placeholder="name@gmail.com"
               />
               <LabelledInput
                 onChange={(e) => {
@@ -50,7 +54,28 @@ export function Signup() {
                 }}
                 label="Password"
                 type={"password"}
-                placeholder="123456"
+                placeholder="Password"
+              />
+              <LabelledInput
+                onChange={(e) => setName(e.target.value)}
+                label="Name"
+                placeholder="Full Name"
+              />
+              <LabelledInput
+                onChange={(e) => setAge(Number(e.target.value))}
+                label="Age"
+                type="number"
+                placeholder="Your age"
+              />
+              <LabelledInput
+                onChange={(e) => setContact(e.target.value)}
+                label="Contact"
+                placeholder="Phone number"
+              />
+              <LabelledInput
+                onChange={(e) => setRole(e.target.value)}
+                label="Role"
+                placeholder="Enter role (0 for Passenger, 1 for Leader)"
               />
               <Button
                 notiTitle="Sing Up successfull"

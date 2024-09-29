@@ -26,8 +26,8 @@ async function getUserDetails() {
   try {
     const response = await axios.get("http://localhost:3000/api/user");
     return response.data;
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    console.error(error);
   }
 }
 
@@ -42,7 +42,6 @@ export default function Home() {
   };
 
   const res = getUserDetails();
-  console.log(res);
 
   useEffect(() => {
     sessionStorage.setItem("selectedLocation", selectedLocation);
