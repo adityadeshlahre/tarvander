@@ -1,16 +1,23 @@
-import * as z from "zod"
-import * as imports from "./"
-import { CompleteUser, RelatedUserModel, CompleteTraveler, RelatedTravelerModel, CompletePlace, RelatedPlaceModel } from "./index"
+import * as z from "zod";
+import * as imports from "./";
+import {
+  CompleteUser,
+  RelatedUserModel,
+  CompleteTraveler,
+  RelatedTravelerModel,
+  CompletePlace,
+  RelatedPlaceModel,
+} from "./index";
 
 export const LeaderModel = z.object({
   id: z.number().int(),
   userId: z.number().int(),
-})
+});
 
 export interface CompleteLeader extends z.infer<typeof LeaderModel> {
-  user: CompleteUser
-  travelers: CompleteTraveler[]
-  places: CompletePlace[]
+  user: CompleteUser;
+  travelers: CompleteTraveler[];
+  places: CompletePlace[];
 }
 
 /**
@@ -18,8 +25,10 @@ export interface CompleteLeader extends z.infer<typeof LeaderModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedLeaderModel: z.ZodSchema<CompleteLeader> = z.lazy(() => LeaderModel.extend({
-  user: RelatedUserModel,
-  travelers: RelatedTravelerModel.array(),
-  places: RelatedPlaceModel.array(),
-}))
+export const RelatedLeaderModel: z.ZodSchema<CompleteLeader> = z.lazy(() =>
+  LeaderModel.extend({
+    user: RelatedUserModel,
+    travelers: RelatedTravelerModel.array(),
+    places: RelatedPlaceModel.array(),
+  }),
+);

@@ -24,5 +24,5 @@ export interface CompletePlace extends z.infer<typeof PlaceModel> {
 export const RelatedPlaceModel: z.ZodSchema<CompletePlace> = z.lazy(() =>
   PlaceModel.extend({
     leader: RelatedLeaderModel,
-  })
+  }),
 );

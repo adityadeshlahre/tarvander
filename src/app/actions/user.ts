@@ -1,6 +1,6 @@
 "use server";
 
-import { Role } from "@prisma/client";
+import type { Role } from "@prisma/client";
 import prisma from "../db/prisma";
 import bcrypt from "bcrypt";
 
@@ -10,7 +10,7 @@ export async function signup(
   age: number,
   contact: string,
   email: string,
-  role: string
+  role: string,
 ) {
   const hashedPassword: string = await bcrypt.hash(password, 10);
 

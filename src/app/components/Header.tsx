@@ -7,6 +7,7 @@ interface ButtonRenderProps {
   text: string;
   appName: string;
   notiTitle: string;
+  onClickFucn?: () => Promise<void>;
 }
 
 export default function Header({
@@ -15,7 +16,7 @@ export default function Header({
   notiTitle,
 }: ButtonRenderProps) {
   const navigate = useNavigate();
-  const onClickFucn = () => {
+  const onClickFucn = async () => {
     navigate("/signup");
   };
   const router = useNavigate();

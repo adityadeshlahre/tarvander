@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import prisma from "../../db/prisma";
 import { UserModel } from "../../../../zod-schemas";
 
@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
   if (!validation.success) {
     return NextResponse.json(
       { error: validation.error.errors },
-      { status: 400 }
+      { status: 400 },
     );
   }
 

@@ -60,22 +60,22 @@ export default function Form() {
   // <Spinner />
 
   const [selectedStarting, setSelectedStarting] = useState(
-    dummyList.starting[0]
+    dummyList.starting[0],
   );
   const [selectedEnding, setSelectedEnding] = useState(dummyList.ending[0]);
 
   const handleStartingChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     const selectedOption = dummyList.starting.find(
-      (item) => item.name === event.target.value
+      (item) => item.name === event.target.value,
     );
     setSelectedStarting(selectedOption || dummyList.starting[0]);
   };
 
   const handleEndingChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOption = dummyList.ending.find(
-      (item) => item.name === event.target.value
+      (item) => item.name === event.target.value,
     );
     setSelectedEnding(selectedOption || dummyList.ending[0]);
   };
@@ -86,7 +86,7 @@ export default function Form() {
   const navigate = useNavigate();
   const showNotification = useNotification({
     title: "Payment Successful!",
-    text: `Your total amount has been recived!`,
+    text: "Your total amount has been recived!",
   });
 
   const handleSelectOption = (option: string) => {
@@ -101,19 +101,19 @@ export default function Form() {
   useEffect(() => {
     sessionStorage.setItem(
       "selectedStarting",
-      JSON.stringify(selectedStarting)
+      JSON.stringify(selectedStarting),
     );
     sessionStorage.setItem("selectedEnding", JSON.stringify(selectedEnding));
     sessionStorage.setItem("noOfTraveller", noOfTraveller.toString());
     sessionStorage.setItem(
       "selectedOption",
-      selectedOption !== null ? selectedOption : "null"
+      selectedOption !== null ? selectedOption : "null",
     );
   }, [noOfTraveller, selectedEnding, selectedStarting, selectedOption]);
 
   return (
     <>
-      <Header appName="Login" text="Login" notiTitle="Login Success!"></Header>
+      <Header appName="Login" text="Login" notiTitle="Login Success!" />
       <br />
       <CardH
         img={

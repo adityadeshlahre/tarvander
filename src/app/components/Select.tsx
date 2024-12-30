@@ -1,6 +1,6 @@
 "use client";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 
 interface SelectProps {
   selectedLocation: string;
@@ -109,11 +109,11 @@ export default function Select({
               </svg>
               <span>
                 <div>Select Date</div>
-                <DatePicker
-                  selected={selectedDate}
-                  onChange={(date) => setSelectedDate(date)}
-                  className="border rounded w-40"
-                />
+                {/* <DatePicker */}
+                {/*   selected={selectedDate} */}
+                {/*   onChange={(date) => setSelectedDate(date)} */}
+                {/*   className="border rounded w-40" */}
+                {/* /> */}
               </span>
             </div>
             <div className="text-xs mt-4 md:mt-0">

@@ -29,5 +29,5 @@ export const RelatedTravelerModel: z.ZodSchema<CompleteTraveler> = z.lazy(() =>
   TravelerModel.extend({
     leader: RelatedLeaderModel,
     user: RelatedUserModel.nullish(),
-  })
+  }),
 );
