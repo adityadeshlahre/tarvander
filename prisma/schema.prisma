@@ -23,20 +23,31 @@ model User {
 
 model Leader {
   id        Int        @id @default(autoincrement())
-  user      User       @relation("UserToLeader", fields: [userId], references: [id])
   userId    Int        @unique
-  travelers Traveler[]
+  user      User       @relation("UserToLeader", fields: [userId], references: [id])
   places    Place[]
+  travelers Traveler[]
+  trips     Trip[]
+}
+
+model Trip {
+  id        Int      @id @default(autoincrement())
+  creaetdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  leaderId  Int
+  placeId   Int
+  leader    Leader   @relation(fields: [leaderId], references: [id])
+  place     Place    @relation(fields: [placeId], references: [id])
 }
 
 model Traveler {
   id       Int    @id @default(autoincrement())
   name     String
   age      Int
-  leader   Leader @relation(fields: [leaderId], references: [id])
   leaderId Int
-  user     User?  @relation(fields: [userId], references: [id])
   userId   Int?
+  leader   Leader @relation(fields: [leaderId], references: [id])
+  user     User?  @relation(fields: [userId], references: [id])
 }
 
 model Place {
@@ -46,8 +57,9 @@ model Place {
   start       String
   end         String
   price       Int
-  leader      Leader @relation(fields: [leaderId], references: [id])
   leaderId    Int
+  leader      Leader @relation(fields: [leaderId], references: [id])
+  Trip        Trip[]
 }
 
 enum Role {

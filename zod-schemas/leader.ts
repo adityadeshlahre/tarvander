@@ -30,5 +30,5 @@ export const RelatedLeaderModel: z.ZodSchema<CompleteLeader> = z.lazy(() =>
     user: RelatedUserModel,
     travelers: RelatedTravelerModel.array(),
     places: RelatedPlaceModel.array(),
-  }),
+  })
 );
