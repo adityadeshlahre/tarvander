@@ -32,7 +32,7 @@ model Leader {
 
 model Trip {
   id        Int      @id @default(autoincrement())
-  creaetdAt DateTime @default(now())
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   leaderId  Int
   placeId   Int

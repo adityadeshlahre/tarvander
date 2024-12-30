@@ -3,7 +3,7 @@ import * as imports from "./";
 import { CompleteLeader, RelatedLeaderModel } from "./index";
 
 export const PlaceModel = z.object({
-  id: z.number().int(),
+  id: z.number().int().optional(),
   title: z.string(),
   description: z.string(),
   start: z.string(),
@@ -11,6 +11,8 @@ export const PlaceModel = z.object({
   price: z.number().int(),
   leaderId: z.number().int(),
 });
+
+export type PlaceInputModel = z.infer<typeof PlaceModel>;
 
 export interface CompletePlace extends z.infer<typeof PlaceModel> {
   leader: CompleteLeader;

@@ -1,8 +1,10 @@
+"use server";
+
 import { z } from "zod";
 import { PlaceModel } from "../../../zod-schemas";
 import prisma from "../db/prisma";
 
-export const CreatePlaceSchema = PlaceModel.omit({ id: true }); // Schema for input validation
+export const CreatePlaceSchema = PlaceModel.omit({ id: true });
 
 export default async function CreatePlace(
   input: z.infer<typeof CreatePlaceSchema>
@@ -28,12 +30,12 @@ export default async function CreatePlace(
 
     const place = await prisma.place.create({
       data: {
-        title,
-        description,
-        start,
-        end,
-        price,
-        leaderId,
+        title: title,
+        description: description,
+        start: start,
+        end: end,
+        price: price,
+        leaderId: leaderExists.id,
       },
     });
 
@@ -56,25 +58,29 @@ export const DeletePlaceSchema = PlaceModel.omit({ id: true }).extend({
 });
 
 export async function DeletePlace({ placeId, leaderId }: DeletePlaceInput) {
-  const parsedData = DeletePlaceSchema.safeParse({ leaderId });
+  try {
+    const parsedData = DeletePlaceSchema.safeParse({ leaderId });
 
-  if (!parsedData.success) {
-    throw new Error("Invalid data: " + parsedData.error);
+    if (!parsedData.success) {
+      throw new Error("Invalid data: " + parsedData.error);
+    }
+
+    const leaderExists = await prisma.leader.findUnique({
+      where: { id: leaderId },
+    });
+
+    if (!leaderExists) {
+      throw new Error("Leader not found.");
+    }
+
+    await prisma.place.delete({
+      where: { id: placeId },
+    });
+
+    return {
+      message: "Place deleted successfully!",
+    };
+  } catch (error: any) {
+    throw new Error(`Failed to deleted place: ${error.message}`);
   }
-
-  const leaderExists = await prisma.leader.findUnique({
-    where: { id: leaderId },
-  });
-
-  if (!leaderExists) {
-    throw new Error("Leader not found.");
-  }
-
-  await prisma.place.delete({
-    where: { id: placeId },
-  });
-
-  return {
-    message: "Place deleted successfully!",
-  };
 }

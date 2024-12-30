@@ -5,12 +5,22 @@ import { RelatedTripModel } from "../../../../zod-schemas";
 export async function GET() {
   const trips = await prisma.trip.findMany({
     include: {
-      leader: true,
-      place: true,
+      leader: {
+        include: {
+          user: true,
+          places: true,
+          travelers: true,
+        },
+      },
+      place: {
+        include: {
+          leader: true,
+        },
+      },
     },
   });
 
-  const parsedResponse = RelatedTripModel.array().safeParse(trips);
+  const parsedResponse = RelatedTripModel.safeParse({ trips });
   if (!parsedResponse.success) {
     return NextResponse.json(
       { message: "Invalid response format", error: parsedResponse.error },
